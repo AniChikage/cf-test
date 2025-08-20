@@ -1,3 +1,5 @@
+export const runtime = 'nodejs';
+
 import { createOpenRouter } from '@openrouter/ai-sdk-provider';
 import { convertToModelMessages, streamText, type UIMessage } from 'ai';
 
