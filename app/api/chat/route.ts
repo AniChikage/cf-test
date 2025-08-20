@@ -4,8 +4,13 @@ import { convertToModelMessages, streamText, type UIMessage } from 'ai';
 export async function POST(req: Request) {
   const { messages }: { messages: UIMessage[] } = await req.json();
   
+  const apiKey = process.env.OPENROUTER_API_KEY;
+  if (!apiKey) {
+    return new Response('Missing OPENROUTER_API_KEY', { status: 500 });
+  }
+  
   const openrouter = createOpenRouter({
-    apiKey: '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',
+    apiKey,
   });
 
   const result = streamText({
